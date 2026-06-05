@@ -52,12 +52,15 @@ import org.opensearch.watcher.ResourceWatcherService;
 import querqy.opensearch.infologging.Log4jSink;
 import querqy.opensearch.query.QuerqyQueryBuilder;
 import querqy.opensearch.rewriterstore.DeleteRewriterAction;
+import querqy.opensearch.rewriterstore.ListRewritersAction;
 import querqy.opensearch.rewriterstore.NodesClearRewriterCacheAction;
 import querqy.opensearch.rewriterstore.NodesReloadRewriterAction;
 import querqy.opensearch.rewriterstore.RestDeleteRewriterAction;
+import querqy.opensearch.rewriterstore.RestListRewritersAction;
 import querqy.opensearch.rewriterstore.RestPutRewriterAction;
 import querqy.opensearch.rewriterstore.PutRewriterAction;
 import querqy.opensearch.rewriterstore.TransportDeleteRewriterAction;
+import querqy.opensearch.rewriterstore.TransportListRewritersAction;
 import querqy.opensearch.rewriterstore.TransportNodesClearRewriterCacheAction;
 import querqy.opensearch.rewriterstore.TransportNodesReloadRewriterAction;
 import querqy.opensearch.rewriterstore.TransportPutRewriterAction;
@@ -106,7 +109,7 @@ public class QuerqyPlugin extends Plugin implements SearchPlugin, ActionPlugin {
                                              final IndexNameExpressionResolver indexNameExpressionResolver,
                                              final Supplier<DiscoveryNodes> nodesInCluster) {
 
-        return Arrays.asList(new RestPutRewriterAction(), new RestDeleteRewriterAction());
+        return Arrays.asList(new RestPutRewriterAction(), new RestDeleteRewriterAction(), new RestListRewritersAction());
 
     }
 
@@ -117,8 +120,8 @@ public class QuerqyPlugin extends Plugin implements SearchPlugin, ActionPlugin {
                 new ActionHandler<>(NodesReloadRewriterAction.INSTANCE, TransportNodesReloadRewriterAction.class),
                 new ActionHandler<>(DeleteRewriterAction.INSTANCE, TransportDeleteRewriterAction.class),
                 new ActionHandler<>(NodesClearRewriterCacheAction.INSTANCE, TransportNodesClearRewriterCacheAction
-                        .class)
-
+                        .class),
+                new ActionHandler<>(ListRewritersAction.INSTANCE, TransportListRewritersAction.class)
         ));
     }
 
