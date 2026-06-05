@@ -23,7 +23,7 @@ import org.assertj.core.api.Assertions;
 import org.opensearch.common.action.ActionFuture;
 import org.opensearch.action.search.SearchRequestBuilder;
 import org.opensearch.action.search.SearchResponse;
-import org.opensearch.client.Response;
+
 import org.opensearch.search.SearchHit;
 import org.junit.Before;
 import org.junit.Test;
@@ -245,7 +245,7 @@ public class NumberUnitRewriterFactoryTest extends AbstractRewriterIntegrationTe
     }
 
     private static void assertSize(SearchResponse actual, int expected) {
-        Assertions.assertThat(actual.getHits().getTotalHits().value).isEqualTo(expected);
+        Assertions.assertThat(actual.getHits().getTotalHits().value()).isEqualTo(expected);
     }
 
     private String getConfigFromFileName(String fileName) throws IOException {

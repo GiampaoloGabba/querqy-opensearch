@@ -24,7 +24,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static querqy.opensearch.rewriterstore.RestDeleteRewriterAction.PARAM_REWRITER_ID;
 
-import org.opensearch.client.node.NodeClient;
+import org.opensearch.transport.client.node.NodeClient;
 import org.opensearch.test.rest.FakeRestRequest;
 import org.junit.Test;
 

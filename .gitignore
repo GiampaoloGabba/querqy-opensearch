@@ -10,6 +10,12 @@ build
 # macOS
 .DS_Store
 
+# Local machine-specific Gradle config (e.g. org.gradle.java.home)
+gradle.properties
+
+# Build error logs
+build-errors.txt
+
 # example files
 ignore*
 example*

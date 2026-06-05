@@ -91,20 +91,22 @@ dependencies {
     implementation('net.minidev:json-smart:2.5.2')
     implementation("net.minidev:accessors-smart:2.4.8")
     implementation("org.ow2.asm:asm:9.3")
-    implementation("org.slf4j:slf4j-api:1.7.36") // downgrading from 2.0.1 b/c of OS test framework
+    implementation("org.slf4j:slf4j-api:2.0.17")
 
 
     testImplementation('junit:junit:4.13.2')
     testImplementation('org.opensearch:opensearch-agent:' + opensearch_version)
-    testImplementation('org.apache.lucene:lucene-test-framework:10.2.1')
+    testImplementation('org.apache.lucene:lucene-test-framework:10.3.2')
     testImplementation('org.apache.logging.log4j:log4j-core:2.21.0')
     testImplementation('org.assertj:assertj-core:3.23.1')
+    testImplementation('org.mockito:mockito-inline:5.2.0')
 }
 
 test {
     useJUnit()
     finalizedBy jacocoTestReport
     include "**/*Test.class"
+    //exclude "**/WordBreakCompoundRewriterFactoryTest.class"
     systemProperties 'java.security.policy': file("$projectDir/plugin-security.policy").absolutePath
 }
 
@@ -148,6 +150,11 @@ forbiddenApis.ignoreFailures = true
 // see https://github.com/elastic/elasticsearch/blob/323f312bbc829a63056a79ebe45adced5099f6e6/buildSrc/src/main/java/org/elasticsearch/gradle/precommit/TestingConventionsTasks.java
 testingConventions.enabled = false
 loggerUsageCheck.enabled = false
+
+// Customize the plugin zip file name
+tasks.named('bundlePlugin') {
+    archiveFileName = 'opensearch-querqy.zip'
+}
 
 publishing {
     publications {

@@ -25,7 +25,7 @@ import static querqy.opensearch.rewriterstore.Constants.QUERQY_INDEX_NAME;
 import org.opensearch.action.admin.indices.create.CreateIndexRequest;
 import org.opensearch.action.admin.indices.create.CreateIndexRequestBuilder;
 import org.opensearch.action.admin.indices.mapping.get.GetMappingsRequest;
-import org.opensearch.client.IndicesAdminClient;
+import org.opensearch.transport.client.IndicesAdminClient;
 import org.opensearch.cluster.metadata.MappingMetadata;
 import org.opensearch.common.settings.Settings;
 import org.opensearch.common.xcontent.XContentType;
